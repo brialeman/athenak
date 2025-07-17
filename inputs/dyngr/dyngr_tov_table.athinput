@@ -1,0 +1,162 @@
+# Athena++ (Kokkos version) input file for TOV star
+
+<comment>
+problem  = Unmagnetized TOV star
+
+<job>
+basename = tov
+
+<mesh>
+nghost = 4       # Number of ghost cells
+nx1    = 64      # number of cells in x1-direction
+x1min  = -102.4  # minimum x1
+x1max  = 102.4   # maximum x1
+ix1_bc = diode   # inner boundary
+ox1_bc = diode   # outer boundary
+
+nx2    = 64      # number of cells in x2-direction
+x2min  = -102.4  # minimum x2
+x2max  = 102.4   # maximum x2
+ix2_bc = diode   # inner boundary
+ox2_bc = diode   # outer boundary
+
+nx3    = 32      # number of cells in x3-direction
+x3min  = 0       # minimum x3
+x3max  = 204.8   # maximum x3
+ix3_bc = reflect # inner boundary
+ox3_bc = diode   # outer boundary
+
+<meshblock>
+nx1  = 16        # Number of cells in each MeshBlock, X1-dir
+nx2  = 16        # Number of cells in each MeshBlock, X2-dir
+nx3  = 16        # Number of cells in each MeshBlock, X3-dir
+
+<mesh_refinement>
+refinement = adaptive
+num_levels = 4
+dpres_max  = 1.0
+max_nmb_per_rank = 200
+
+<refinement1>
+x1min = -12.6
+x1max =  12.6
+x2min = -12.6
+x2max =  12.6
+x3min =  0.0  
+x3max =  12.6
+level = 3
+
+#<refinement2>
+#x1min = -10
+#x1max =  10
+#x2min = -10
+#x2max =  10
+#x3min = -10
+#x3max =  10
+#level = 2
+
+<time>
+evolution  = dynamic    # dynamic/kinematic/static
+integrator = rk3        # time integration algorithm
+cfl_number = 0.1
+nlim       = -1
+tlim       = 100
+ndiag      = 1          # cycles between diagnostic output
+
+<coord>
+general_rel = true      # general relativity
+minkowski   = true
+m           = 1.0
+a           = 0.0
+excise      = false
+
+<mhd>
+eos         = ideal     # EOS type
+dyn_eos     = compose   # EOS type
+#dyn_eos     = ideal
+dyn_error   = reset_floor # error policy
+reconstruct = wenoz     # spatial reconstruction method
+rsolver     = hlle      # Riemann solver to be used
+dfloor      = 1.28e-13  # floor on density rho
+#pfloor      = 1.6384e-34 # floor on gas pressure p_gas
+tfloor      = 0.11
+#tfloor      = 1.28e-11
+s0_atmosphere = 0.5
+dthreshold  = 1.0       # Threshold for flooring
+gamma       = 2.0       # ratio of specific heats Gamma
+dyn_scratch = 0
+fofc        = true
+fixed       = false
+table       = tables/SFHo_NQT_O2.athtable
+#table       = tables/SFHo.athtable
+#table       = DD2_nu.athtab
+#table       = DD2_nu_equal.athtab
+nscalars    = 1
+c2p_caching = false
+use_NQT     = true
+
+<adm>
+
+<z4c>
+diss        = 0.1
+use_z4c     = false
+
+<problem>
+rhoc        = 1.28e-3 # Central density
+#rhoc        = 4.0e-3
+table       = SFHo_cold_b.athtab
+#table       = DD2_hot_ccsn.athtab
+#table       = DD2_hot.athtab
+#table       = DD2_cold_equal.athtab
+kappa       = 100
+npoints     = 15000.0  # buffer points for TOV calculation
+dr          = 1e-3     # radial step for TOV calculation
+rho_cut     = 1e-5
+b_norm      = 0.0 
+pcut        = 1e-6
+magindex    = 1
+isotropic   = false
+minkowski   = false
+user_hist   = true
+v_pert      = 1e-1
+
+<output1>
+file_type   = hst      # History data dump
+dt          = 0.00001  # time increment between outputs
+data_format = %20.15e
+
+<output2>
+file_type   = bin      # Binary data dump
+variable    = mhd_w_bcc  # variables to be output
+dt          = 1.0      # time increment between outputs
+slice_x3    = 0.0
+
+#<output3>
+#file_type   = bin
+#variable    = mhd_u_bcc
+#dt          = 1.0
+
+#<output3>
+#file_type   = bin
+#variable    = z4c
+#dt          = 10.0
+#slice_x3    = 0.0
+
+#<output4>
+#file_type   = bin
+#variable    = con
+#dt          = 10.0
+#slice_x3    = 0.0
+
+#<output5>
+#file_type   = bin
+#variable    = adm
+#dt          = 10.0
+#slice_x3    = 0.0
+
+#<output6>
+#file_type   = tab
+#variable    = z4c
+#dt          = 0.00001
+#slice_x3    = 0.0
+#slice_x2    = 0.0
