@@ -74,8 +74,7 @@ enforce_maximum = false
 dmp_M       = 1.2
 nscalars = 1
 s0_atmosphere = 0.5
-table = /storage/home/bba5425/numRelPSU/runs/rdf_1-8/eos171.athtab
-
+table = /storage/home/bba5425/numRelPSU/PyCompOSE/EOS_star/eos171/eos171.athtab
 <adm>
 
 <z4c>

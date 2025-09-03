@@ -140,7 +140,7 @@ void SetupTOV(ParameterInput *pin, Mesh* pmy_mesh_) {
     //w0_(m,IPR,k,j,i) = fmax(p*(1. + p_pert), tov_.pfloor);
     w0_(m,IDN,k,j,i) = rho;
     //w0_(m,IPR,k,j,i) = p*(1. + p_pert);
-    w0_(m,IEN,k,j,i) = eos_.template GetEFromRho<LocationTag::Host>(rho);
+    w0_(m,IEN,k,j,i) = eos_.template GetEFromRho<tov::LocationTag::Device>(rho) - rho;
     w0_(m,IVX,k,j,i) = vr*x1v/r;
     w0_(m,IVY,k,j,i) = vr*x2v/r;
     w0_(m,IVZ,k,j,i) = vr*x3v/r;
