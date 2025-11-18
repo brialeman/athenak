@@ -90,11 +90,11 @@ class EOSCompOSE : public EOSPolicyInterface, public LogPolicy, public SupportsE
   /// Temperature from energy density
   KOKKOS_INLINE_FUNCTION Real TemperatureFromE(Real n, Real e, Real *Y) const {
     assert (m_initialized);
-    if (n < min_n) {
-      return min_T;
-    } else if (e <= MinimumEnergy(n, Y)) {
-      return min_T;
-    }
+    // if (n < min_n) {
+    //  return min_T;
+    // } else if (e <= MinimumEnergy(n, Y)) {
+    //   return min_T;
+    // }
     Real log_e = log2_(e);
     return temperature_from_var(ECLOGE, log_e, n, Y[0]);
   }
@@ -102,11 +102,11 @@ class EOSCompOSE : public EOSPolicyInterface, public LogPolicy, public SupportsE
   /// Calculate the temperature using.
   KOKKOS_INLINE_FUNCTION Real TemperatureFromP(Real n, Real p, Real *Y) const {
     assert (m_initialized);
-    if (n < min_n) {
-      return min_T;
-    } else if (p <= MinimumPressure(n, Y)) {
-      return min_T;
-    }
+    // if (n < min_n) {
+    //  return min_T;
+    // } else if (p <= MinimumPressure(n, Y)) {
+    //  return min_T;
+    // }
     Real log_p = log2_(p);
     return temperature_from_var(ECLOGP, log_p, n, Y[0]);
   }
