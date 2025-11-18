@@ -56,7 +56,11 @@ ndiag      = 1          # cycles between diagnostic output
 general_rel = true      # general relativity
 m           = 1.0
 a           = 0.0
-excise      = false
+excise      = true
+dexcise     = 1.28e-13
+pexcise     = 1.36e-17
+excision_scheme = lapse
+excise_lapse = 0.2
 
 <mhd>
 eos         = ideal     # EOS type
