@@ -78,6 +78,7 @@ enforce_maximum = false
 dmp_M       = 1.2
 nscalars = 1
 s0_atmosphere = 0.5
+c2p_tol    = 1e-13
 table = /global/u1/b/baleman/numRelPSU/PyCompOSE/EOS_star/eos164/new_eos164.athtab
 <adm>
 

@@ -354,6 +354,7 @@ class PrimitiveSolverHydro {
 
     // FIXME(JMF): We can short-circuit the primitive solve if FOFC is already enabled
     // due to a maximum principle violation.
+    Real time = pmy_pack->pmesh->time;
     int count_errs=0;
     Kokkos::parallel_reduce("pshyd_c2p",Kokkos::RangePolicy<>(DevExeSpace(), 0, nmkji),
     KOKKOS_LAMBDA(const int &idx, int &sumerrs) {
@@ -464,6 +465,7 @@ class PrimitiveSolverHydro {
           Real x3v = CellCenterX(k-ks, indcs.nx3, x3min, x3max);
 
           Kokkos::printf("An error occurred during the primitive solve: %s\n"
+                 "  Time: %.17g\n"
                  "  Location: (%d, %d, %d, %d)\n"
                  "            (%.17g, %.17g, %.17g)\n"
                  "  Conserved vars: \n"
@@ -484,6 +486,7 @@ class PrimitiveSolverHydro {
                  "    psi4 = %.17g\n"
                  "    K_dd = {%.17g, %.17g, %.17g, %.17g, %.17g, %.17g}\n",
                  ErrorToString(result.error),
+                 time,
                  m, k, j, i,
                  x1v, x2v, x3v,
                  cons_pt_old[CDN], cons_pt_old[CSX], cons_pt_old[CSY], cons_pt_old[CSZ],

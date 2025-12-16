@@ -31,18 +31,18 @@ nx1  = 32        # Number of cells in each MeshBlock, X1-dir
 nx2  = 32        # Number of cells in each MeshBlock, X2-dir
 nx3  = 32        # Number of cells in each MeshBlock, X3-dir
 
-<mesh_refinement>
-refinement = static
-num_levels = 4
+# <mesh_refinement>
+# refinement = static
+# num_levels = 4
 
-<refined_region1>
-x1min = 0.0
-x1max = 12.7
-x2min = 0.0
-x2max = 12.7
-x3min = 0.0
-x3max = 12.7
-level = 4
+# <refined_region1>
+# x1min = 0.0
+# x1max = 12.7
+# x2min = 0.0
+# x2max = 12.7
+# x3min = 0.0
+# x3max = 12.7
+# level = 4
 
 <time>
 evolution  = dynamic    # dynamic/kinematic/static
@@ -81,9 +81,9 @@ s0_atmosphere = 0.5
 table = /global/u1/b/baleman/numRelPSU/PyCompOSE/EOS_star/eos164/new_eos164.athtab
 <adm>
 
-<z4c>
-diss        = 0.1
-extrap_order = 2
+# <z4c>
+# diss        = 0.1
+# extrap_order = 2
 
 <problem>
 rhoc        = 1.28e-3 # Central density
@@ -120,14 +120,14 @@ variable    = adm
 dt          = 10.
 slice_x3    = 0.0
 
-<output5>
-file_type   = bin
-variable    = z4c
-dt          = 10.
-slice_x3    = 0.0
+# <output5>
+# file_type   = bin
+# variable    = z4c
+# dt          = 10.
+# slice_x3    = 0.0
 
-<output6>
-file_type   = bin
-variable    = con
-dt          = 10.
-slice_x3    = 0.0
+# <output6>
+# file_type   = bin
+# variable    = con
+# dt          = 10.
+# slice_x3    = 0.0
